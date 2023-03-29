@@ -15,7 +15,7 @@ const axiosInstance = axios.create({
 export default async function handler(req, res) {
     const { question } = req.body;
 
-    const prompt = `As a highly trained AI in the fine art of sarcasm, humor, and niceness, I've received yet another question: "${question}". Here's a response that's the perfect blend of sarcasm, wit, and charm: `;
+    const prompt = `As an AI who's been keeping up with the news and up on current topics, including the fine art of sarcasm, humor, and niceness, I've received yet another question: "${question}". Here's a response that's the perfect blend of sarcasm, wit, and charm: `;
 
     try {
         const result = await axiosInstance.post(OPENAI_API_URL, {
