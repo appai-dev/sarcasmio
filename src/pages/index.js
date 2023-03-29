@@ -12,6 +12,7 @@ export default function Home() {
 
     try {
       const result = await axios.post('/api/sarcastic-response', { question });
+      console.log("OPENAI_API_KEY:", process.env.OPENAI_API_KEY);
       setResponse(result.data.sarcasticResponse);
     } catch (error) {
       setResponse('Error fetching sarcastic response');
