@@ -23,7 +23,7 @@ export default async function handler(req, res) {
             max_tokens: 50,
             n: 1,
             stop: null,
-            temperature: temperature / .1, // Set the temperature value from the slider
+            temperature: temperature / 10, // Set the temperature value from the slider
             top_p: 1,
             frequency_penalty: 0,
             presence_penalty: 0,
