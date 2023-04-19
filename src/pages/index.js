@@ -79,6 +79,7 @@ export default function Home() {
         .label {
           font-size: 24px;
           margin-bottom: 10px;
+          color: #808080;
         }
         .input {
           font-size: 24px;
