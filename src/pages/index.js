@@ -1,17 +1,36 @@
-import { useState } from 'react';
+// src/pages/index.js
+
+import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { firestore } from '../firebase';
 
 export default function Home() {
   const [question, setQuestion] = useState('');
   const [response, setResponse] = useState('');
-  const [temperature, setTemperature] = useState(5); // Add a new state for temperature
+  const [responses, setResponses] = useState([]);
+  const [temperature, setTemperature] = useState(5);
+
+  useEffect(() => {
+    const fetchResponses = async () => {
+      const snapshot = await firestore.collection('responses').get();
+      const fetchedResponses = snapshot.docs.map(doc => doc.data().response);
+      setResponses(fetchedResponses);
+    };
+
+    fetchResponses();
+  }, []);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
 
     try {
       const result = await axios.post('/api/sarcastic-response', { question, temperature });
-      setResponse(result.data.sarcasticResponse);
+      const newResponse = result.data.sarcasticResponse;
+      setResponse(newResponse);
+
+      await firestore.collection('responses').add({ response: newResponse });
+
+      setResponses([...responses, newResponse]);
     } catch (error) {
       setResponse('Error fetching sarcastic response');
     }
@@ -43,6 +62,15 @@ export default function Home() {
         <button className="button" type="submit">Ask</button>
       </form>
       {response && <p className="response">{response}</p>}
+      {/* Add the title for the Firebase responses */}
+      <h3 className="responses-title">All the Sarcastic Responses</h3>
+      <div className="responses">
+        {responses.map((response, index) => (
+          <p key={index} className="firebase-response">
+            {response}
+          </p>
+        ))}
+      </div>
       {/* Add slider styles */}
       <style jsx>{`
         // Other styles ...
@@ -56,7 +84,17 @@ export default function Home() {
           transition: opacity .2s;
           margin-bottom: 20px;
         }
-
+        .responses-title {
+          padding-top: 10px;
+          color: #979797;
+        }
+        .firebase-response {
+          color: #979797;
+          width: 500px;
+          padding-bottom: 5px;
+          padding-top: 20px;
+          font-style: italic;
+      }
         .slider:hover {
           opacity: 1;
         }
