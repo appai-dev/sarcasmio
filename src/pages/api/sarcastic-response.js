@@ -3,7 +3,7 @@
 import axios from 'axios';
 
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
-const OPENAI_API_URL = 'https://api.openai.com/v1/engines/text-davinci-002/completions';
+const OPENAI_API_URL = 'https://api.openai.com/v1/engines/text-davinci-003/completions';
 
 const axiosInstance = axios.create({
     headers: {
