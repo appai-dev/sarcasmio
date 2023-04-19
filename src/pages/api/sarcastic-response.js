@@ -13,7 +13,7 @@ const axiosInstance = axios.create({
 });
 
 export default async function handler(req, res) {
-    const { question } = req.body;
+    const { question, temperature } = req.body; // Add temperature to the destructuring assignment
 
     const prompt = `As an AI who's been keeping up with the news and up on current topics, including the fine art of sarcasm, humor, and niceness, I've received yet another question: "${question}". Here's a response that's the perfect blend of sarcasm, wit, and charm: `;
 
@@ -23,7 +23,7 @@ export default async function handler(req, res) {
             max_tokens: 50,
             n: 1,
             stop: null,
-            temperature: 0.7,
+            temperature: temperature / .1, // Set the temperature value from the slider
             top_p: 1,
             frequency_penalty: 0,
             presence_penalty: 0,
