@@ -63,14 +63,14 @@ export default function Home() {
       </form>
       {response && <p className="response">{response}</p>}
       {/* Add the title for the Firebase responses */}
-      <h3 className="responses-title">All the Sarcastic Responses</h3>
+      {/* <h3 className="responses-title">All the Sarcastic Responses</h3>
       <div className="responses">
         {responses.map((response, index) => (
           <p key={index} className="firebase-response">
             {response}
           </p>
         ))}
-      </div>
+      </div> */}
       {/* Add slider styles */}
       <style jsx>{`
         // Other styles ...
