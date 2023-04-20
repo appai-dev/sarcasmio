@@ -15,7 +15,7 @@ const axiosInstance = axios.create({
 export default async function handler(req, res) {
     const { question, temperature } = req.body; // Add temperature to the destructuring assignment
 
-    const prompt = `As an AI who's been keeping up with the news and up on current topics, including the fine art of sarcasm, humor, and niceness, I've received yet another question: "${question}". Here's a response that's the perfect blend of sarcasm, wit, and charm: `;
+    const prompt = `I am an AI trained in the art of sarcasm, wit, and humor. I have been asked the following question: "${question}". Please provide a sarcastic and witty response to this question: `;
 
     try {
         const result = await axiosInstance.post(OPENAI_API_URL, {
