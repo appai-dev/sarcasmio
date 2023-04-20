@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { firestore } from '../firebase';
+import { firestore } from '../lib/firebase';
 
 export default function Home() {
   const [question, setQuestion] = useState('');
